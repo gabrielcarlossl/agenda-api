@@ -38,8 +38,12 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  # get a debugger on console
   gem "byebug", platform: :mri
+  # generate fake data
   gem "faker"
+  # Rails >= 3 pry initializer
+  gem 'pry-rails'
 end
 
 group :development do
