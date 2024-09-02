@@ -3,14 +3,15 @@ class Contact < ApplicationRecord
   #Associations
   belongs_to :kind
   has_many :phones
+  accepts_nested_attributes_for :phones
   
-  def author
-    "Gabriel Carlos"
-  end
+  # def author
+  #   "Gabriel Carlos"
+  # end
   
-  def kind_description
-    self.kind.description
-  end
+  # def kind_description
+  #   self.kind.description
+  # end
 
   def as_json(options={})
    h = super(options)
