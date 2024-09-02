@@ -1,5 +1,8 @@
 class Contact < ApplicationRecord
+
+  #Associations
   belongs_to :kind
+  has_many :phones
   
   def author
     "Gabriel Carlos"
