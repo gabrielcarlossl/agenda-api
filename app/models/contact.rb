@@ -13,10 +13,24 @@ class Contact < ApplicationRecord
   end
 
   def as_json(options={})
-    super(
-      root: true,
-      methods: [:author, :kind_description],
-      include: {kind: {only: :description}}
-      )
+   h = super(options)
+   h[:birthdate] = (I18n.l(self.birthdate) unless self.birthdate.blank?)
+   h
   end
+
+  # def as_json(options={})
+  #   super(
+  #     root: true,
+  #     methods: [:author, :kind_description],
+  #     include: {kind: {only: :description}}
+  #     )
+  # end
+
+  # def to_br
+  #   {
+  #     name: self.name,
+  #     email: self.email,
+  #     birthdate: (I18n.l(self.birthdate) unless self.birthdate.blank?)
+  #   }
+  # end
 end
