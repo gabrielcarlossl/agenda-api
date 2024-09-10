@@ -5,13 +5,13 @@ class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
     
-    render json: @contacts, include: [:phones]
+    render json: @contacts, include: [:phones, :address]
     # render json: @contacts, methods: :author
   end
 
   # GET /contacts/1
   def show
-    render json: @contact, include: [:kind, :phones]
+    render json: @contact, include: [:kind, :phones, :address]
   end
 
   # POST /contacts
@@ -28,7 +28,7 @@ class ContactsController < ApplicationController
   # PATCH/PUT /contacts/1
   def update
     if @contact.update(contact_params)
-      render json: @contact, include: [:phones, :kind]
+      render json: @contact, include: [:phones, :kind, :address]
     else
       render json: @contact.errors, status: :unprocessable_entity
     end
@@ -52,7 +52,8 @@ class ContactsController < ApplicationController
           :email,
           :birthdate,
           :kind_id,
-          phones_attributes: [:id, :number, :_destroy]
+          phones_attributes: [:id, :number, :_destroy],
+          address_attributes: [:id, :street, :city]
         )
     end
 end
