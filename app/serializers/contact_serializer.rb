@@ -1,9 +1,17 @@
 class ContactSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :birthdate, :phones, :address, :kind
+  attributes :id, :name, :email, :birthdate, :phones, :address, :kind #, :author
   #Associations
   belongs_to :kind
   has_many :phones
   has_one :address
+
+  # def author
+  #   "Gabriel Carlos"
+  # end
+
+  meta do 
+    { author: "Gabriel Carlos"}
+  end
   
   # Utiliza do mesmo jeito que era usado no model, mas substitui  'as_json' por 'attributes' e 'options' por '*args' e 'self' por 'object'
 #   def attributes(*args)
