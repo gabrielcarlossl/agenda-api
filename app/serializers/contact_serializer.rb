@@ -2,13 +2,13 @@ class ContactSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :birthdate, :phones, :address, :kind #, :author
   #Associations
   belongs_to :kind do
-    link(:kind) {kind_url(object.kind.id)}
+    link(:related) {kind_url(object.kind.id)}
   end
   has_many :phones
   has_one :address
 
-  link(:self) {contact_path(object.id)}
-  link(:kind) {kind_url(object.kind.id)}
+  # link(:self) {contact_path(object.id)}
+  # link(:kind) {kind_url(object.kind.id)}
 
   # def author
   #   "Gabriel Carlos"
