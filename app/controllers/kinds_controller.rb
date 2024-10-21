@@ -40,8 +40,15 @@ class KindsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+# Se o parâmetro contact_id estiver presente, ele encontra o Contact e usa a associação para obter o Kind relacionado
+# Se não houver contact_id, ele busca diretamente o Kind pelo id.
     def set_kind
-      @kind = Kind.find(params[:id])
+      if params[:contact_id]
+        @kind = Contact.find(params[:contact_id]).kind
+      else
+        @kind = Kind.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
